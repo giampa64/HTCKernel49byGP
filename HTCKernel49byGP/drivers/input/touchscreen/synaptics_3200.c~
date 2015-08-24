@@ -218,7 +218,6 @@ static void syn_handle_block_touch(struct synaptics_ts_data *ts, int enable)
 #define SWEEP_DOWN		0x08
 
 int vibrate(int time);
-int pocket_detection_check(void);
 static bool scr_suspended = false;
 static int s2w_switch = 15;
 static int s2s_switch = 2;

@@ -13,7 +13,6 @@
 #ifndef _ARCH_ARM_MACH_KGSL_H
 #define _ARCH_ARM_MACH_KGSL_H
 
-/* Clock flags to show which clocks should be controled by a given platform */
 #define KGSL_CLK_SRC	0x00000001
 #define KGSL_CLK_CORE	0x00000002
 #define KGSL_CLK_IFACE	0x00000004
@@ -38,6 +37,8 @@
 	 (((_ma) & 0xFF) << 16) | \
 	 (((_mi) & 0xFF) << 8) | \
 	 ((_pa) & 0xFF))
+
+extern uint32_t max_gpu;
 
 enum kgsl_iommu_context_id {
 	KGSL_IOMMU_CONTEXT_USER = 0,

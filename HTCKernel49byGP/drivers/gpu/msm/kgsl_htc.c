@@ -2,8 +2,6 @@
 
 #include "kgsl_htc.h"
 
-/* Dump pid informations of all contexts *
- * caller need to hold context_lock 	 */
 void
 kgsl_dump_contextpid_locked(struct idr *context_idr)
 {
