@@ -1,0 +1,1659 @@
+Makefile:955: aggiorna l'obbiettivo "include/config/kernel.release" a causa di: FORCE
+rm -f include/config/kernel.release
+echo "3.4.10$(/bin/bash /home/giampa/kernel.htc/scripts/setlocalversion /home/giampa/kernel.htc)" > include/config/kernel.release
+Makefile:438: l'obbiettivo "asm-generic" non esiste
+make -f /home/giampa/kernel.htc/scripts/Makefile.asm-generic \
+            obj=arch/arm/include/generated/asm
+/home/giampa/kernel.htc/scripts/Makefile.asm-generic:20: aggiorna l'obbiettivo "all" a causa di: arch/arm/include/generated/asm/auxvec.h arch/arm/include/generated/asm/bitsperlong.h arch/arm/include/generated/asm/cputime.h arch/arm/include/generated/asm/emergency-restart.h arch/arm/include/generated/asm/errno.h arch/arm/include/generated/asm/ioctl.h arch/arm/include/generated/asm/irq_regs.h arch/arm/include/generated/asm/kdebug.h arch/arm/include/generated/asm/local.h arch/arm/include/generated/asm/local64.h arch/arm/include/generated/asm/percpu.h arch/arm/include/generated/asm/poll.h arch/arm/include/generated/asm/resource.h arch/arm/include/generated/asm/sections.h arch/arm/include/generated/asm/siginfo.h arch/arm/include/generated/asm/sizes.h
+:
+Makefile:1018: aggiorna l'obbiettivo "include/linux/version.h" a causa di: FORCE
+set -e; echo '  CHK     include/linux/version.h'; mkdir -p include/linux/; 	(echo \#define LINUX_VERSION_CODE 197642; echo '#define KERNEL_VERSION(a,b,c) (((a) << 16) + ((b) << 8) + (c))';) < /home/giampa/kernel.htc/Makefile > include/linux/version.h.tmp; if [ -r include/linux/version.h ] && cmp -s include/linux/version.h include/linux/version.h.tmp; then rm -f include/linux/version.h.tmp; else echo '  UPD     include/linux/version.h'; mv -f include/linux/version.h.tmp include/linux/version.h; fi
+  CHK     include/linux/version.h
+Makefile:1021: aggiorna l'obbiettivo "include/generated/utsrelease.h" a causa di: include/config/kernel.release FORCE
+set -e; echo '  CHK     include/generated/utsrelease.h'; mkdir -p include/generated/; 	if [ `echo -n "3.4.10" | wc -c ` -gt 64 ]; then echo '"3.4.10" exceeds 64 characters' >&2; exit 1; fi; (echo \#define UTS_RELEASE \"3.4.10\";) < include/config/kernel.release > include/generated/utsrelease.h.tmp; if [ -r include/generated/utsrelease.h ] && cmp -s include/generated/utsrelease.h include/generated/utsrelease.h.tmp; then rm -f include/generated/utsrelease.h.tmp; else echo '  UPD     include/generated/utsrelease.h'; mv -f include/generated/utsrelease.h.tmp include/generated/utsrelease.h; fi
+  CHK     include/generated/utsrelease.h
+Makefile:986: aggiorna l'obbiettivo "prepare1" a causa di: prepare2 include/linux/version.h include/generated/utsrelease.h include/config/auto.conf
+mkdir -p .tmp_versions ; rm -f .tmp_versions/*
+Makefile:418: l'obbiettivo "scripts_basic" non esiste
+make -f scripts/Makefile.build obj=scripts/basic
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/basic/modules.order" a causa di: FORCE
+(cat /dev/null; ) > scripts/basic/modules.order
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/basic/fixdep" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/basic/modules.order scripts/basic/fixdep
+:
+rm -f .tmp_quiet_recordmcount
+/home/giampa/kernel.htc/arch/arm/Makefile:279: aggiorna l'obbiettivo "archprepare" a causa di: archheaders archscripts prepare1 scripts_basic
+make -f scripts/Makefile.build obj=arch/arm/tools include/generated/mach-types.h
+make[1]: "include/generated/mach-types.h" è aggiornato.
+Makefile:991: aggiorna l'obbiettivo "prepare0" a causa di: archprepare FORCE
+make -f scripts/Makefile.build obj=.
+scripts/Makefile.build:391: aggiorna l'obbiettivo "modules.order" a causa di: FORCE
+(cat /dev/null; ) > modules.order
+/home/giampa/kernel.htc/./Kbuild:35: aggiorna l'obbiettivo "kernel/bounds.s" a causa di: FORCE
+mkdir -p kernel/
+/home/giampa/kernel.htc/./Kbuild:81: aggiorna l'obbiettivo "arch/arm/kernel/asm-offsets.s" a causa di: FORCE
+mkdir -p arch/arm/kernel/
+/home/giampa/kernel.htc/./Kbuild:98: aggiorna l'obbiettivo "missing-syscalls" a causa di: scripts/checksyscalls.sh include/generated/asm-offsets.h FORCE
+echo '  CALL    scripts/checksyscalls.sh'; /bin/bash scripts/checksyscalls.sh /home/giampa/kernel.htc/scripts/gcc-wrapper.py /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-gcc -Wp,-MD,./.missing-syscalls.d  -nostdinc -isystem /home/giampa/toolchains/arm-eabi-4.7/bin/../lib/gcc/arm-eabi/4.7/include -I/home/giampa/kernel.htc/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/giampa/kernel.htc/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -mno-unaligned-access -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO    -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(missing_syscalls)"  -D"KBUILD_MODNAME=KBUILD_STR(missing_syscalls)" 
+  CALL    scripts/checksyscalls.sh
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: modules.order include/generated/bounds.h include/generated/asm-offsets.h missing-syscalls
+:
+Makefile:512: aggiorna l'obbiettivo "scripts" a causa di: scripts_basic include/config/auto.conf include/config/tristate.conf
+make -f scripts/Makefile.build obj=scripts
+scripts/Makefile.build:443: l'obbiettivo "scripts/genksyms" non esiste
+make -f scripts/Makefile.build obj=scripts/genksyms
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/genksyms/modules.order" a causa di: FORCE
+(cat /dev/null; ) > scripts/genksyms/modules.order
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/genksyms/genksyms.o" a causa di: FORCE
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/genksyms/lex.lex.o" a causa di: FORCE
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/genksyms/parse.tab.o" a causa di: FORCE
+scripts/Makefile.host:127: aggiorna l'obbiettivo "scripts/genksyms/genksyms" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/genksyms/modules.order scripts/genksyms/genksyms
+:
+scripts/Makefile.build:443: l'obbiettivo "scripts/mod" non esiste
+make -f scripts/Makefile.build obj=scripts/mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/mod/modules.order" a causa di: FORCE
+(cat /dev/null; ) > scripts/mod/modules.order
+scripts/Makefile.build:307: aggiorna l'obbiettivo "scripts/mod/empty.o" a causa di: FORCE
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/mod/mk_elfconfig" a causa di: FORCE
+/home/giampa/kernel.htc/scripts/mod/Makefile:14: aggiorna l'obbiettivo "scripts/mod/elfconfig.h" a causa di: FORCE
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/mod/file2alias.o" a causa di: FORCE
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/mod/modpost.o" a causa di: FORCE
+scripts/Makefile.host:134: aggiorna l'obbiettivo "scripts/mod/sumversion.o" a causa di: FORCE
+scripts/Makefile.host:127: aggiorna l'obbiettivo "scripts/mod/modpost" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/mod/modules.order scripts/mod/modpost scripts/mod/mk_elfconfig scripts/mod/empty.o
+:
+scripts/Makefile.build:443: l'obbiettivo "scripts/selinux" non esiste
+make -f scripts/Makefile.build obj=scripts/selinux
+scripts/Makefile.build:443: l'obbiettivo "scripts/selinux/genheaders" non esiste
+make -f scripts/Makefile.build obj=scripts/selinux/genheaders
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/selinux/genheaders/modules.order" a causa di: FORCE
+(cat /dev/null; ) > scripts/selinux/genheaders/modules.order
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/selinux/genheaders/genheaders" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/selinux/genheaders/modules.order scripts/selinux/genheaders/genheaders
+:
+scripts/Makefile.build:443: l'obbiettivo "scripts/selinux/mdp" non esiste
+make -f scripts/Makefile.build obj=scripts/selinux/mdp
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/selinux/mdp/modules.order" a causa di: FORCE
+(cat /dev/null; ) > scripts/selinux/mdp/modules.order
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/selinux/mdp/mdp" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/selinux/mdp/modules.order scripts/selinux/mdp/mdp
+:
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/selinux/modules.order" a causa di: scripts/selinux/genheaders scripts/selinux/mdp FORCE
+(cat /dev/null; ) > scripts/selinux/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/selinux/modules.order scripts/selinux/genheaders scripts/selinux/mdp
+:
+scripts/Makefile.build:391: aggiorna l'obbiettivo "scripts/modules.order" a causa di: scripts/genksyms scripts/mod scripts/selinux FORCE
+(cat /dev/null; ) > scripts/modules.order
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/kallsyms" a causa di: FORCE
+scripts/Makefile.host:118: aggiorna l'obbiettivo "scripts/bin2c" a causa di: FORCE
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: scripts/modules.order scripts/genksyms scripts/mod scripts/selinux scripts/kallsyms scripts/bin2c
+:
+Makefile:951: aggiorna l'obbiettivo "init" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=init
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/main.o" a causa di: FORCE
+/home/giampa/kernel.htc/init/Makefile:30: aggiorna l'obbiettivo "include/generated/compile.h" a causa di: FORCE
+echo '  CHK     include/generated/compile.h'
+  CHK     include/generated/compile.h
+/bin/bash /home/giampa/kernel.htc/scripts/mkcompile_h include/generated/compile.h \
+"arm" "y" "y" "/home/giampa/kernel.htc/scripts/gcc-wrapper.py /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-gcc -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -mno-unaligned-access  -D__LINUX_ARM_ARCH__=7 -march=armv7-a   -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO"
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/version.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/do_mounts.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/do_mounts_rd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/do_mounts_initrd.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "init/mounts.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/initramfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "init/calibrate.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "init/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "init/modules.order" a causa di: FORCE
+(cat /dev/null; ) > init/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: init/built-in.o init/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "usr" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=usr
+scripts/Makefile.host:118: aggiorna l'obbiettivo "usr/gen_init_cpio" a causa di: FORCE
+/home/giampa/kernel.htc/usr/Makefile:67: aggiorna l'obbiettivo "usr/initramfs_data.cpio" a causa di: klibcdirs
+/bin/bash /home/giampa/kernel.htc/scripts/gen_initramfs_list.sh -l -d > usr/.initramfs_data.cpio.d
+scripts/Makefile.build:343: aggiorna l'obbiettivo "usr/initramfs_data.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "usr/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "usr/modules.order" a causa di: FORCE
+(cat /dev/null; ) > usr/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: usr/built-in.o usr/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/vfp" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/vfp
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/vfp/vfpmodule.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/vfp/entry.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/vfp/vfphw.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/vfp/vfpsingle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/vfp/vfpdouble.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "arch/arm/vfp/vfp.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/vfp/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/vfp/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/vfp/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/vfp/built-in.o arch/arm/vfp/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/kernel" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/kernel
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/elf.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/kernel/entry-armv.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/kernel/entry-common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/irq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/opcodes.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/process.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/ptrace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/return_address.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/sched_clock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/setup.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/signal.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/stacktrace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/sys_arm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/time.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/traps.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/cpuidle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/armksyms.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/module.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/kernel/sleep.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/suspend.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/smp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/smp_tlb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/smp_scu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/thumbee.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/unwind.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/swp_emulate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/pmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/perf_event.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/topology.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/io.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/kernel/built-in.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/kernel/head.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/kernel/init_task.o" a causa di: FORCE
+scripts/Makefile.build:355: aggiorna l'obbiettivo "arch/arm/kernel/vmlinux.lds" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/kernel/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/kernel/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/kernel/built-in.o arch/arm/kernel/head.o arch/arm/kernel/init_task.o arch/arm/kernel/vmlinux.lds arch/arm/kernel/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/mm" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/mm
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/dma-mapping.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/extable.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/fault.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/init.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/iomap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/fault-armv.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/flush.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/idmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/ioremap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/mmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/pgd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/mmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/vmregion.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/proc-syms.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/alignment.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/highmem.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mm/abort-ev7.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mm/pabort-v7.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mm/cache-v7.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/copypage-v6.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mm/context.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mm/tlb-v7.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mm/proc-v7.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mm/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/mm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mm/built-in.o arch/arm/mm/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/common" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/common
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/common/gic.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/common/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/common/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/common/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/common/built-in.o arch/arm/common/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/net" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/net
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/net/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/net/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/net/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/net/built-in.o arch/arm/net/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/mach-msm" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/mach-msm
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/io.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/dma.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/memory.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/emmc_partitions.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/timer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-voter.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-dummy.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/modem_notifier.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/subsystem_map.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/cpufreq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/nohlt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/acpuclock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/radio_feedback.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm-krait-l2-accessors.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/perf_event_msm_krait_l2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/krait-scm.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mach-msm/headsmp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/platsmp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/hotplug.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mach-msm/idle-v7.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_port_list_lte.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/scm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/scm-boot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_simlock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_sdservice.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_drm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_rmtmsg.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_fingerprint.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/peripheral-loader.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/scm-pas.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pil-q6v4.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pil-riva.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pil-tzapps.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pil-vidc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pil-gss.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/bam_dmux.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/remote_spinlock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_private.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/socinfo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_sysinfo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_tty.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_qmi.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_pkt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_dsps.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_nmea.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/ipc_router_smd_xprt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/ipc_router.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/ipc_socket.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/smd_rpc_sym.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "arch/arm/mach-msm/display" non esiste
+make -f scripts/Makefile.build obj=arch/arm/mach-msm/display
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mach-msm/display/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mach-msm/display/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/mach-msm/display/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mach-msm/display/built-in.o arch/arm/mach-msm/display/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "arch/arm/mach-msm/msm_bus" non esiste
+make -f scripts/Makefile.build obj=arch/arm/mach-msm/msm_bus
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_fabric.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_config.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_arb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_rpm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_bimc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_noc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_board_8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_board_8064.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/msm_bus_dbg.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_bus/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/mach-msm/msm_bus/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mach-msm/msm_bus/built-in.o arch/arm/mach-msm/msm_bus/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "arch/arm/mach-msm/qdsp6v2" non esiste
+make -f scripts/Makefile.build obj=arch/arm/mach-msm/qdsp6v2
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/apr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/apr_tal.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/q6core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/dsp_debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_acdb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/aac_in.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/qcelp_in.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/evrc_in.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/amrnb_in.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_utils.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_wma.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_wmapro.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_aac.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_multi_aac.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_utils_aio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/rtac.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/q6audio_v1.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/q6audio_v1_aio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_mp3.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_amrnb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_amrwb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_evrc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/audio_qcelp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/amrwb_in.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound" non esiste
+make -f scripts/Makefile.build obj=arch/arm/mach-msm/qdsp6v2/ultrasound
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound/q6usm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound/usf.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound/usfcdev.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/ultrasound/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/mach-msm/qdsp6v2/ultrasound/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mach-msm/qdsp6v2/ultrasound/built-in.o arch/arm/mach-msm/qdsp6v2/ultrasound/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mach-msm/qdsp6v2/modules.order" a causa di: arch/arm/mach-msm/qdsp6v2/ultrasound FORCE
+(cat /dev/null;   cat arch/arm/mach-msm/qdsp6v2/ultrasound/modules.order;) > arch/arm/mach-msm/qdsp6v2/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mach-msm/qdsp6v2/built-in.o arch/arm/mach-msm/qdsp6v2/modules.order arch/arm/mach-msm/qdsp6v2/ultrasound
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pm-boot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pm-8x60.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pm-data.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/pm-stats.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/spm-v2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/spm_devices.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_acoustic_8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm-regulator.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm-regulator-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/subsystem_notif.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/subsystem_restart.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/ramdump.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/sysmon.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/modem-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/lpass-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/cpuidle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-rfkill.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_bdaddress.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_4335_wl_reg.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_watchdog.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_watchdog_monitor.o" a causa di: FORCE
+scripts/Makefile.build:343: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_watchdog_asm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-local.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-dss-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-rpm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/clock-pll.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/footswitch-8x60.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/acpuclock-8064.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/acpuclock-krait.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/acpuclock-krait-debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_cpu_pwrctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/memory_topology.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/saw-regulator.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/devices-8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_wifi_nvs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/devices_htc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_awb_cal.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/devices-8064.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/bms-batterydata.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/bms-batterydata-desay.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-pmic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-storage.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-gpiomux.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-display.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-gpu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-keypad.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-wifi.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-audio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-camera.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-all.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/board-dlxp_ul-regulator.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_util.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_battery_core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_battery_8960.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_battery_cell.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_headset_mgr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_headset_pmic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_headset_one_wire.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm_resources.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/mpm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm_stats.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/rpm_log.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/tz_log.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_xo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/devices-iommu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/iommu_domains.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/gpiomux-v2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/gpiomux.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/idle_stats.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_dcvs_scm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_dcvs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_dcvs_idle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_rq_stats.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_show_resume_irq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/restart-apq8064.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_restart_handler.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/mdm2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/mdm_common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/msm_rtb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/cache_erp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/hsic_sysmon.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/perflock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_ramdump.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_monitor.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/mach-msm/htc_cpu_usage_stats.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/mach-msm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:313: aggiorna l'obbiettivo "arch/arm/mach-msm/reset_modem.o" a causa di: FORCE
+{ echo arch/arm/mach-msm/reset_modem.ko; echo arch/arm/mach-msm/reset_modem.o; } > .tmp_versions/reset_modem.mod
+scripts/Makefile.build:313: aggiorna l'obbiettivo "arch/arm/mach-msm/msm-buspm-dev.o" a causa di: FORCE
+{ echo arch/arm/mach-msm/msm-buspm-dev.ko; echo arch/arm/mach-msm/msm-buspm-dev.o; } > .tmp_versions/msm-buspm-dev.mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/mach-msm/modules.order" a causa di: arch/arm/mach-msm/display arch/arm/mach-msm/msm_bus arch/arm/mach-msm/qdsp6v2 FORCE
+(cat /dev/null;   cat arch/arm/mach-msm/qdsp6v2/modules.order;   cat arch/arm/mach-msm/msm_bus/modules.order;   cat arch/arm/mach-msm/display/modules.order;   echo kernel/arch/arm/mach-msm/reset_modem.ko;   echo kernel/arch/arm/mach-msm/msm-buspm-dev.ko;) > arch/arm/mach-msm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/mach-msm/built-in.o arch/arm/mach-msm/reset_modem.o arch/arm/mach-msm/msm-buspm-dev.o arch/arm/mach-msm/modules.order arch/arm/mach-msm/display arch/arm/mach-msm/msm_bus arch/arm/mach-msm/qdsp6v2
+:
+Makefile:951: aggiorna l'obbiettivo "arch/arm/perfmon" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=arch/arm/perfmon
+scripts/Makefile.build:307: aggiorna l'obbiettivo "arch/arm/perfmon/perf-function-hooks.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "arch/arm/perfmon/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "arch/arm/perfmon/modules.order" a causa di: FORCE
+(cat /dev/null; ) > arch/arm/perfmon/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: arch/arm/perfmon/built-in.o arch/arm/perfmon/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "kernel" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=kernel
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/fork.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/exec_domain.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/panic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/printk.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cpu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/exit.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/itimer.o" a causa di: FORCE
+/home/giampa/kernel.htc/kernel/Makefile:130: aggiorna l'obbiettivo "kernel/timeconst.h" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/softirq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/resource.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sysctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sysctl_binary.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/capability.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/ptrace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/timer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/user.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/signal.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sys.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/kmod.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/workqueue.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/pid.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/rcupdate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/extable.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/params.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/posix-timers.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/kthread.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/wait.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/kfifo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sys_ni.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/posix-cpu-timers.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/mutex.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/hrtimer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/rwsem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/nsproxy.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/srcu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/semaphore.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/notifier.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/ksysfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cred.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/async.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/range.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/groups.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "kernel/events" non esiste
+make -f scripts/Makefile.build obj=kernel/events
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/events/core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/events/ring_buffer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/events/callchain.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/events/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/events/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/events/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/events/built-in.o kernel/events/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "kernel/irq" non esiste
+make -f scripts/Makefile.build obj=kernel/irq
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/irqdesc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/handle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/manage.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/spurious.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/resend.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/chip.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/dummychip.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/devres.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/autoprobe.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/irqdomain.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/proc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq/pm.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/irq/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/irq/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/irq/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/irq/built-in.o kernel/irq/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "kernel/power" non esiste
+make -f scripts/Makefile.build obj=kernel/power
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/qos.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/main.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/process.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/suspend.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/wakelock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/userwakelock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/earlysuspend.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/fbearlysuspend.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/poweroff.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/htc_pnpmgr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/power/adaptive_tuning.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/power/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/power/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/power/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/power/built-in.o kernel/power/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "kernel/sched" non esiste
+make -f scripts/Makefile.build obj=kernel/sched
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/clock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/idle_task.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/fair.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/rt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/stop_task.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/sched/cpupri.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/sched/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/sched/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/sched/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/sched/built-in.o kernel/sched/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "kernel/time" non esiste
+make -f scripts/Makefile.build obj=kernel/time
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/timekeeping.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/ntp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/clocksource.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/jiffies.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/timer_list.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/timecompare.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/timeconv.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/posix-clock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/clockevents.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/tick-common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/tick-broadcast.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/tick-oneshot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/tick-sched.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/time/timer_stats.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/time/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/time/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/time/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/time/built-in.o kernel/time/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "kernel/trace" non esiste
+make -f scripts/Makefile.build obj=kernel/trace
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_clock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/ring_buffer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_output.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_stat.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_printk.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_sched_switch.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_sched_wakeup.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_nop.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/blktrace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_events.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_export.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_event_perf.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/trace_events_filter.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/power-traces.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/trace/rpm-traces.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/trace/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/trace/modules.order" a causa di: FORCE
+(cat /dev/null; ) > kernel/trace/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/trace/built-in.o kernel/trace/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/freezer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/stacktrace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/futex.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/rtmutex.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/smp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/spinlock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/uid16.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/module.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/kallsyms.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cgroup.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cgroup_freezer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cgroup_timer_slack.o" a causa di: FORCE
+/home/giampa/kernel.htc/kernel/Makefile:117: aggiorna l'obbiettivo "kernel/config_data.gz" a causa di: FORCE
+/home/giampa/kernel.htc/kernel/Makefile:122: aggiorna l'obbiettivo "kernel/config_data.h" a causa di: FORCE
+set -e; echo '  CHK     kernel/config_data.h'; mkdir -p kernel/; (echo "static const char kernel_config_data[] __used = MAGIC_START"; cat kernel/config_data.gz | scripts/bin2c; echo "MAGIC_END;") < kernel/config_data.gz > kernel/config_data.h.tmp; if [ -r kernel/config_data.h ] && cmp -s kernel/config_data.h kernel/config_data.h.tmp; then rm -f kernel/config_data.h.tmp; else echo '  UPD     kernel/config_data.h'; mv -f kernel/config_data.h.tmp kernel/config_data.h; fi
+  CHK     kernel/config_data.h
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/configs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/res_counter.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/stop_machine.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/audit.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/auditfilter.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/auditsc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/audit_watch.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/audit_tree.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/rcutree.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/relay.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/utsname_sysctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/tracepoint.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/elfcore.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/irq_work.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "kernel/cpu_pm.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "kernel/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "kernel/modules.order" a causa di: kernel/events kernel/irq kernel/power kernel/sched kernel/time kernel/trace FORCE
+(cat /dev/null;   cat kernel/sched/modules.order;   cat kernel/power/modules.order;   cat kernel/time/modules.order;   cat kernel/irq/modules.order;   cat kernel/trace/modules.order;   cat kernel/trace/modules.order;   cat kernel/trace/modules.order;   cat kernel/events/modules.order;) > kernel/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: kernel/built-in.o kernel/modules.order kernel/events kernel/irq kernel/power kernel/sched kernel/time kernel/trace
+:
+Makefile:951: aggiorna l'obbiettivo "mm" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=mm
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/filemap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mempool.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/oom_kill.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/fadvise.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/maccess.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/page_alloc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/page-writeback.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/readahead.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/swap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/truncate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/vmscan.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/shmem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/prio_tree.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/util.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mmzone.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/vmstat.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/backing-dev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/page_isolation.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mm_init.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mmu_context.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/percpu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/compaction.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/fremap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/highmem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/madvise.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/memory.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mincore.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mlock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mprotect.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/mremap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/msync.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/rmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/vmalloc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/pagewalk.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/pgtable-generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/process_vm_access.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/init-mm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/bootmem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/memblock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/bounce.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/dmapool.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/ksm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/slub.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/migrate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/kmemleak.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "mm/cleancache.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "mm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "mm/modules.order" a causa di: FORCE
+(cat /dev/null; ) > mm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: mm/built-in.o mm/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "fs" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=fs
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/open.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/read_write.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/file_table.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/super.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/char_dev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/stat.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/exec.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/pipe.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/namei.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fcntl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ioctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/readdir.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/select.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fifo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/dcache.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/attr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/bad_inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/filesystems.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/namespace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/seq_file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/xattr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/libfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fs-writeback.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/pnode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/drop_caches.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/splice.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sync.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/utimes.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/stack.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fs_struct.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/statfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/buffer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/bio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/block_dev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/direct-io.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/mpage.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ioprio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc_namespace.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "fs/debugfs" non esiste
+make -f scripts/Makefile.build obj=fs/debugfs
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/debugfs/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/debugfs/file.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/debugfs/debugfs.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/debugfs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/debugfs/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/debugfs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/debugfs/built-in.o fs/debugfs/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/devpts" non esiste
+make -f scripts/Makefile.build obj=fs/devpts
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/devpts/inode.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/devpts/devpts.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/devpts/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/devpts/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/devpts/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/devpts/built-in.o fs/devpts/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/ecryptfs" non esiste
+make -f scripts/Makefile.build obj=fs/ecryptfs
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/ecryptfs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/dentry.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/main.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/super.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/mmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/read_write.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/crypto.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/keystore.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/messaging.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/miscdev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/kthread.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ecryptfs/debug.o" a causa di: FORCE
+scripts/Makefile.build:432: aggiorna l'obbiettivo "fs/ecryptfs/ecryptfs.o" a causa di: FORCE
+{ echo fs/ecryptfs/ecryptfs.ko; echo fs/ecryptfs/dentry.o fs/ecryptfs/file.o fs/ecryptfs/inode.o fs/ecryptfs/main.o fs/ecryptfs/super.o fs/ecryptfs/mmap.o fs/ecryptfs/read_write.o fs/ecryptfs/crypto.o fs/ecryptfs/keystore.o fs/ecryptfs/messaging.o fs/ecryptfs/miscdev.o fs/ecryptfs/kthread.o fs/ecryptfs/debug.o; } > .tmp_versions/ecryptfs.mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/ecryptfs/modules.order" a causa di: FORCE
+(cat /dev/null;   echo kernel/fs/ecryptfs/ecryptfs.ko;) > fs/ecryptfs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/ecryptfs/built-in.o fs/ecryptfs/ecryptfs.o fs/ecryptfs/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/exofs" non esiste
+make -f scripts/Makefile.build obj=fs/exofs
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/exofs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/exofs/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/exofs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/exofs/built-in.o fs/exofs/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/ext4" non esiste
+make -f scripts/Makefile.build obj=fs/ext4
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/balloc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/bitmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/dir.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/fsync.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/ialloc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/page-io.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/ioctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/namei.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/super.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/symlink.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/hash.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/resize.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/extents.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/ext4_jbd2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/migrate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/mballoc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/block_validity.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/move_extent.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/mmp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/indirect.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/xattr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/xattr_user.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/xattr_trusted.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ext4/xattr_security.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/ext4/ext4.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/ext4/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/ext4/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/ext4/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/ext4/built-in.o fs/ext4/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/fat" non esiste
+make -f scripts/Makefile.build obj=fs/fat
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/cache.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/dir.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/fatent.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/misc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fat/namei_vfat.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/fat/fat.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/fat/vfat.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/fat/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/fat/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/fat/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/fat/built-in.o fs/fat/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/fuse" non esiste
+make -f scripts/Makefile.build obj=fs/fuse
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fuse/dev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fuse/dir.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fuse/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fuse/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fuse/control.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/fuse/fuse.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/fuse/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/fuse/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/fuse/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/fuse/built-in.o fs/fuse/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/jbd2" non esiste
+make -f scripts/Makefile.build obj=fs/jbd2
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/transaction.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/commit.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/recovery.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/checkpoint.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/revoke.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/jbd2/journal.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/jbd2/jbd2.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/jbd2/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/jbd2/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/jbd2/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/jbd2/built-in.o fs/jbd2/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/nls" non esiste
+make -f scripts/Makefile.build obj=fs/nls
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/nls/nls_base.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/nls/nls_cp437.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/nls/nls_ascii.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/nls/nls_iso8859-1.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/nls/nls_utf8.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/nls/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/nls/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/nls/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/nls/built-in.o fs/nls/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/notify" non esiste
+make -f scripts/Makefile.build obj=fs/notify
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/fsnotify.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/notification.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/group.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/inode_mark.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/mark.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/vfsmount_mark.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "fs/notify/dnotify" non esiste
+make -f scripts/Makefile.build obj=fs/notify/dnotify
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/notify/dnotify/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/notify/dnotify/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/notify/dnotify/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/notify/dnotify/built-in.o fs/notify/dnotify/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/notify/fanotify" non esiste
+make -f scripts/Makefile.build obj=fs/notify/fanotify
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/notify/fanotify/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/notify/fanotify/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/notify/fanotify/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/notify/fanotify/built-in.o fs/notify/fanotify/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/notify/inotify" non esiste
+make -f scripts/Makefile.build obj=fs/notify/inotify
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/inotify/inotify_fsnotify.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/notify/inotify/inotify_user.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/notify/inotify/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/notify/inotify/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/notify/inotify/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/notify/inotify/built-in.o fs/notify/inotify/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/notify/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/notify/modules.order" a causa di: fs/notify/dnotify fs/notify/fanotify fs/notify/inotify FORCE
+(cat /dev/null;   cat fs/notify/dnotify/modules.order;   cat fs/notify/inotify/modules.order;   cat fs/notify/fanotify/modules.order;) > fs/notify/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/notify/built-in.o fs/notify/modules.order fs/notify/dnotify fs/notify/fanotify fs/notify/inotify
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/proc" non esiste
+make -f scripts/Makefile.build obj=fs/proc
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/mmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/task_mmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/root.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/base.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/array.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/proc_tty.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/cmdline.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/consoles.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/cpuinfo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/devices.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/interrupts.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/loadavg.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/meminfo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/stat.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/uptime.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/version.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/softirqs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/namespaces.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/proc_sysctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/proc_net.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/kmsg.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/proc/page.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/proc/proc.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/proc/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/proc/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/proc/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/proc/built-in.o fs/proc/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/quota" non esiste
+make -f scripts/Makefile.build obj=fs/quota
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/quota/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/quota/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/quota/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/quota/built-in.o fs/quota/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/ramfs" non esiste
+make -f scripts/Makefile.build obj=fs/ramfs
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ramfs/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/ramfs/file-mmu.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "fs/ramfs/ramfs.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/ramfs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/ramfs/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/ramfs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/ramfs/built-in.o fs/ramfs/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "fs/sysfs" non esiste
+make -f scripts/Makefile.build obj=fs/sysfs
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/inode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/file.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/dir.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/symlink.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/mount.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/bin.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/sysfs/group.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/sysfs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/sysfs/modules.order" a causa di: FORCE
+(cat /dev/null; ) > fs/sysfs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/sysfs/built-in.o fs/sysfs/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/eventpoll.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/anon_inodes.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/signalfd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/timerfd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/eventfd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/aio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/locks.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/binfmt_script.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/binfmt_elf.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/mbcache.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "fs/fd_monitor.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "fs/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "fs/modules.order" a causa di: fs/debugfs fs/devpts fs/ecryptfs fs/exofs fs/ext4 fs/fat fs/fuse fs/jbd2 fs/nls fs/notify fs/proc fs/quota fs/ramfs fs/sysfs FORCE
+(cat /dev/null;   cat fs/notify/modules.order;   cat fs/quota/modules.order;   cat fs/proc/modules.order;   cat fs/sysfs/modules.order;   cat fs/devpts/modules.order;   cat fs/ext4/modules.order;   cat fs/jbd2/modules.order;   cat fs/ramfs/modules.order;   cat fs/fat/modules.order;   cat fs/nls/modules.order;   cat fs/fuse/modules.order;   cat fs/debugfs/modules.order;   cat fs/exofs/modules.order;   cat fs/ecryptfs/modules.order;) > fs/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: fs/built-in.o fs/modules.order fs/debugfs fs/devpts fs/ecryptfs fs/exofs fs/ext4 fs/fat fs/fuse fs/jbd2 fs/nls fs/notify fs/proc fs/quota fs/ramfs fs/sysfs
+:
+Makefile:951: aggiorna l'obbiettivo "ipc" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=ipc
+scripts/Makefile.build:375: aggiorna l'obbiettivo "ipc/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "ipc/modules.order" a causa di: FORCE
+(cat /dev/null; ) > ipc/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: ipc/built-in.o ipc/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "security" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=security
+scripts/Makefile.build:443: l'obbiettivo "security/keys" non esiste
+make -f scripts/Makefile.build obj=security/keys
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/gc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/key.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/keyring.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/keyctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/permission.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/process_keys.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/request_key.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/request_key_auth.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/user_defined.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/proc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/keys/sysctl.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "security/keys/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "security/keys/modules.order" a causa di: FORCE
+(cat /dev/null; ) > security/keys/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: security/keys/built-in.o security/keys/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "security/selinux" non esiste
+make -f scripts/Makefile.build obj=security/selinux
+/home/giampa/kernel.htc/security/selinux/Makefile:25: aggiorna l'obbiettivo "security/selinux/flask.h" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/avc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/hooks.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/selinuxfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/netlink.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/nlmsgtab.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/netif.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/netnode.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/netport.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/exports.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/ebitmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/hashtab.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/symtab.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/sidtab.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/avtab.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/policydb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/services.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/conditional.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/mls.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/selinux/ss/status.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "security/selinux/selinux.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "security/selinux/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "security/selinux/modules.order" a causa di: FORCE
+(cat /dev/null; ) > security/selinux/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: security/selinux/built-in.o security/selinux/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/commoncap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/min_addr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/security.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/capability.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "security/lsm_audit.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "security/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "security/modules.order" a causa di: security/keys security/selinux FORCE
+(cat /dev/null;   cat security/keys/modules.order;) > security/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: security/built-in.o security/modules.order security/keys security/selinux
+:
+Makefile:951: aggiorna l'obbiettivo "crypto" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=crypto
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/api.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/cipher.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/compress.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/algapi.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/scatterwalk.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/proc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/ablkcipher.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/blkcipher.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/ahash.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/shash.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/algboss.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/testmgr.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "crypto/crypto.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/crypto_wq.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "crypto/crypto_algapi.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/aead.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "crypto/crypto_blkcipher.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/chainiv.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/eseqiv.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "crypto/crypto_hash.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/pcompress.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "crypto/cryptomgr.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/hmac.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/md4.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/md5.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/sha1_generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/sha256_generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/ecb.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/cbc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/des_generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/twofish_generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/twofish_common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/aes_generic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/arc4.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/deflate.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/crc32c.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/authenc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/authencesn.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/rng.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "crypto/krng.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "crypto/built-in.o" a causa di: FORCE
+scripts/Makefile.build:313: aggiorna l'obbiettivo "crypto/ansi_cprng.o" a causa di: FORCE
+{ echo crypto/ansi_cprng.ko; echo crypto/ansi_cprng.o; } > .tmp_versions/ansi_cprng.mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "crypto/modules.order" a causa di: FORCE
+(cat /dev/null;   echo kernel/crypto/ansi_cprng.ko;) > crypto/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: crypto/built-in.o crypto/ansi_cprng.o crypto/modules.order
+:
+Makefile:951: aggiorna l'obbiettivo "block" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=block
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/elevator.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-tag.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-sysfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-flush.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-settings.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-ioc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-map.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-exec.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-merge.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-softirq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-timeout.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-iopoll.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/blk-lib.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/ioctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/genhd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/scsi_ioctl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/partition-generic.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "block/partitions" non esiste
+make -f scripts/Makefile.build obj=block/partitions
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/partitions/check.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/partitions/msdos.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/partitions/efi.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "block/partitions/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "block/partitions/modules.order" a causa di: FORCE
+(cat /dev/null; ) > block/partitions/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: block/partitions/built-in.o block/partitions/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/noop-iosched.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/deadline-iosched.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/row-iosched.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "block/cfq-iosched.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "block/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "block/modules.order" a causa di: block/partitions FORCE
+(cat /dev/null;   cat block/partitions/modules.order;) > block/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: block/built-in.o block/modules.order block/partitions
+:
+Makefile:951: aggiorna l'obbiettivo "drivers" a causa di: prepare scripts
+make -f scripts/Makefile.build obj=drivers
+scripts/Makefile.build:443: l'obbiettivo "drivers/auxdisplay" non esiste
+make -f scripts/Makefile.build obj=drivers/auxdisplay
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/auxdisplay/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/auxdisplay/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/auxdisplay/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/auxdisplay/built-in.o drivers/auxdisplay/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/base" non esiste
+make -f scripts/Makefile.build obj=drivers/base
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/bus.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/dd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/syscore.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/driver.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/class.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/platform.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/cpu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/firmware.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/init.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/map.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/devres.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/attribute_container.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/transport_class.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/topology.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/sys.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/base/power" non esiste
+make -f scripts/Makefile.build obj=drivers/base/power
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/sysfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/generic_ops.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/qos.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/main.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/wakeup.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/runtime.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/power/clock_ops.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/base/power/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/base/power/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/base/power/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/base/power/built-in.o drivers/base/power/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/base/regmap" non esiste
+make -f scripts/Makefile.build obj=drivers/base/regmap
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regmap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regcache.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regcache-rbtree.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regcache-lzo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regmap-debugfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regmap-i2c.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/regmap/regmap-spi.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/base/regmap/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/base/regmap/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/base/regmap/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/base/regmap/built-in.o drivers/base/regmap/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/dma-mapping.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/dma-coherent.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/dma-buf.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/genlock.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/firmware_class.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/module.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/sync.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/base/sw_sync.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/base/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/base/modules.order" a causa di: drivers/base/power drivers/base/regmap FORCE
+(cat /dev/null;   cat drivers/base/power/modules.order;   cat drivers/base/regmap/modules.order;) > drivers/base/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/base/built-in.o drivers/base/modules.order drivers/base/power drivers/base/regmap
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/block" non esiste
+make -f scripts/Makefile.build obj=drivers/block
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/block/brd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/block/loop.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/block/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/block/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/block/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/block/built-in.o drivers/block/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/bluetooth" non esiste
+make -f scripts/Makefile.build obj=drivers/bluetooth
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/bluetooth/built-in.o" a causa di: FORCE
+scripts/Makefile.build:313: aggiorna l'obbiettivo "drivers/bluetooth/bluetooth-power.o" a causa di: FORCE
+{ echo drivers/bluetooth/bluetooth-power.ko; echo drivers/bluetooth/bluetooth-power.o; } > .tmp_versions/bluetooth-power.mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/bluetooth/modules.order" a causa di: FORCE
+(cat /dev/null;   echo kernel/drivers/bluetooth/bluetooth-power.ko;) > drivers/bluetooth/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/bluetooth/built-in.o drivers/bluetooth/bluetooth-power.o drivers/bluetooth/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/cdrom" non esiste
+make -f scripts/Makefile.build obj=drivers/cdrom
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/cdrom/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/cdrom/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/cdrom/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/cdrom/built-in.o drivers/cdrom/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/char" non esiste
+make -f scripts/Makefile.build obj=drivers/char
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/mem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/random.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/misc.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/char/diag" non esiste
+make -f scripts/Makefile.build obj=drivers/char/diag
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagchar_core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagchar_hdlc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagfwd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagmem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagfwd_cntl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diag_dci.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diag_masks.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diag_debugfs.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/char/diag/diagchar.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagfwd_bridge.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagfwd_hsic.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/diag/diagfwd_smux.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/char/diag/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/char/diag/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/char/diag/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/char/diag/built-in.o drivers/char/diag/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/char/hw_random" non esiste
+make -f scripts/Makefile.build obj=drivers/char/hw_random
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/hw_random/core.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/char/hw_random/rng-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/hw_random/msm_rng.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/char/hw_random/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/char/hw_random/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/char/hw_random/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/char/hw_random/built-in.o drivers/char/hw_random/modules.order
+:
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/char/msm_rotator.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/char/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/char/modules.order" a causa di: drivers/char/diag drivers/char/hw_random FORCE
+(cat /dev/null;   cat drivers/char/hw_random/modules.order;   cat drivers/char/diag/modules.order;) > drivers/char/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/char/built-in.o drivers/char/modules.order drivers/char/diag drivers/char/hw_random
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/clk" non esiste
+make -f scripts/Makefile.build obj=drivers/clk
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/clk/clkdev.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/clk/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/clk/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/clk/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/clk/built-in.o drivers/clk/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/clocksource" non esiste
+make -f scripts/Makefile.build obj=drivers/clocksource
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/clocksource/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/clocksource/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/clocksource/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/clocksource/built-in.o drivers/clocksource/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/cpufreq" non esiste
+make -f scripts/Makefile.build obj=drivers/cpufreq
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_stats.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_performance.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_powersave.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_userspace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_ondemand.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/freq_table.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpufreq/cpufreq_gov_msm.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/cpufreq/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/cpufreq/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/cpufreq/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/cpufreq/built-in.o drivers/cpufreq/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/cpuidle" non esiste
+make -f scripts/Makefile.build obj=drivers/cpuidle
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/cpuidle.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/driver.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/governor.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/sysfs.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/cpuidle/governors" non esiste
+make -f scripts/Makefile.build obj=drivers/cpuidle/governors
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/governors/ladder.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/cpuidle/governors/menu.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/cpuidle/governors/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/cpuidle/governors/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/cpuidle/governors/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/cpuidle/governors/built-in.o drivers/cpuidle/governors/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/cpuidle/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/cpuidle/modules.order" a causa di: drivers/cpuidle/governors FORCE
+(cat /dev/null;   cat drivers/cpuidle/governors/modules.order;) > drivers/cpuidle/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/cpuidle/built-in.o drivers/cpuidle/modules.order drivers/cpuidle/governors
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/crypto" non esiste
+make -f scripts/Makefile.build obj=drivers/crypto
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/crypto/built-in.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/crypto/msm" non esiste
+make -f scripts/Makefile.build obj=drivers/crypto/msm
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/crypto/msm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:313: aggiorna l'obbiettivo "drivers/crypto/msm/qcedev.o" a causa di: FORCE
+{ echo drivers/crypto/msm/qcedev.ko; echo drivers/crypto/msm/qcedev.o; } > .tmp_versions/qcedev.mod
+scripts/Makefile.build:313: aggiorna l'obbiettivo "drivers/crypto/msm/qce40.o" a causa di: FORCE
+{ echo drivers/crypto/msm/qce40.ko; echo drivers/crypto/msm/qce40.o; } > .tmp_versions/qce40.mod
+scripts/Makefile.build:313: aggiorna l'obbiettivo "drivers/crypto/msm/qcrypto.o" a causa di: FORCE
+{ echo drivers/crypto/msm/qcrypto.ko; echo drivers/crypto/msm/qcrypto.o; } > .tmp_versions/qcrypto.mod
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/crypto/msm/modules.order" a causa di: FORCE
+(cat /dev/null;   echo kernel/drivers/crypto/msm/qcedev.ko;   echo kernel/drivers/crypto/msm/qce40.ko;   echo kernel/drivers/crypto/msm/qcrypto.ko;) > drivers/crypto/msm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/crypto/msm/built-in.o drivers/crypto/msm/qcedev.o drivers/crypto/msm/qce40.o drivers/crypto/msm/qcrypto.o drivers/crypto/msm/modules.order
+:
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/crypto/modules.order" a causa di: drivers/crypto/msm FORCE
+(cat /dev/null;   cat drivers/crypto/msm/modules.order;) > drivers/crypto/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/crypto/built-in.o drivers/crypto/modules.order drivers/crypto/msm
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/felica" non esiste
+make -f scripts/Makefile.build obj=drivers/felica
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/felica/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/felica/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/felica/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/felica/built-in.o drivers/felica/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/firewire" non esiste
+make -f scripts/Makefile.build obj=drivers/firewire
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/firewire/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/firewire/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/firewire/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/firewire/built-in.o drivers/firewire/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/firmware" non esiste
+make -f scripts/Makefile.build obj=drivers/firmware
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/firmware/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/firmware/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/firmware/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/firmware/built-in.o drivers/firmware/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpio" non esiste
+make -f scripts/Makefile.build obj=drivers/gpio
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/gpiolib.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/devres.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/gpio-msm-common.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/gpio-msm-v2.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/pm8xxx-gpio.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/pm8xxx-mpp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpio/gpio-sx150x.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpio/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpio/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpio/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpio/built-in.o drivers/gpio/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/drm" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/drm
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/drm/i2c" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/drm/i2c
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/drm/i2c/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/drm/i2c/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpu/drm/i2c/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/drm/i2c/built-in.o drivers/gpu/drm/i2c/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/drm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/drm/modules.order" a causa di: drivers/gpu/drm/i2c FORCE
+(cat /dev/null;   cat drivers/gpu/drm/i2c/modules.order;) > drivers/gpu/drm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/drm/built-in.o drivers/gpu/drm/modules.order drivers/gpu/drm/i2c
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/ion" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/ion
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion_heap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion_system_heap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion_carveout_heap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion_iommu_heap.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/ion_cp_heap.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/ion/msm" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/ion/msm
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/msm/msm_ion.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/ion/msm/ion_cp_common.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/ion/msm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/ion/msm/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpu/ion/msm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/ion/msm/built-in.o drivers/gpu/ion/msm/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/ion/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/ion/modules.order" a causa di: drivers/gpu/ion/msm FORCE
+(cat /dev/null;   cat drivers/gpu/ion/msm/modules.order;) > drivers/gpu/ion/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/ion/built-in.o drivers/gpu/ion/modules.order drivers/gpu/ion/msm
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/msm" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/msm
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_ringbuffer.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_drawctxt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_postmortem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_snapshot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a2xx.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a2xx_trace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a2xx_snapshot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a3xx.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a3xx_trace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_a3xx_snapshot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/adreno_debugfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_trace.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_sharedmem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_pwrctrl.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_pwrscale.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_mmu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_gpummu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_iommu.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_snapshot.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_events.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_htc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_debugfs.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_pwrscale_trustzone.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_pwrscale_msm.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/kgsl_sync.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/z180.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/z180_postmortem.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/gpu/msm/z180_trace.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/gpu/msm/msm_kgsl_core.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/gpu/msm/msm_adreno.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/gpu/msm/msm_z180.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/msm/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/msm/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpu/msm/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/msm/built-in.o drivers/gpu/msm/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/stub" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/stub
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/stub/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/stub/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpu/stub/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/stub/built-in.o drivers/gpu/stub/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/gpu/vga" non esiste
+make -f scripts/Makefile.build obj=drivers/gpu/vga
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/vga/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/vga/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/gpu/vga/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/vga/built-in.o drivers/gpu/vga/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/gpu/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/gpu/modules.order" a causa di: drivers/gpu/drm drivers/gpu/ion drivers/gpu/msm drivers/gpu/stub drivers/gpu/vga FORCE
+(cat /dev/null;   cat drivers/gpu/drm/modules.order;   cat drivers/gpu/vga/modules.order;   cat drivers/gpu/stub/modules.order;   cat drivers/gpu/ion/modules.order;   cat drivers/gpu/msm/modules.order;) > drivers/gpu/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/gpu/built-in.o drivers/gpu/modules.order drivers/gpu/drm drivers/gpu/ion drivers/gpu/msm drivers/gpu/stub drivers/gpu/vga
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/hid" non esiste
+make -f scripts/Makefile.build obj=drivers/hid
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-input.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/hid/hid.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/uhid.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-apple.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-magicmouse.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/hid-microsoft.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/hid/usbhid" non esiste
+make -f scripts/Makefile.build obj=drivers/hid/usbhid
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/usbhid/hid-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hid/usbhid/hid-quirks.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/hid/usbhid/usbhid.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/hid/usbhid/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/hid/usbhid/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/hid/usbhid/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/hid/usbhid/built-in.o drivers/hid/usbhid/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/hid/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/hid/modules.order" a causa di: drivers/hid/usbhid FORCE
+(cat /dev/null;   cat drivers/hid/usbhid/modules.order;) > drivers/hid/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/hid/built-in.o drivers/hid/modules.order drivers/hid/usbhid
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/hsi" non esiste
+make -f scripts/Makefile.build obj=drivers/hsi
+scripts/Makefile.build:443: l'obbiettivo "drivers/hsi/clients" non esiste
+make -f scripts/Makefile.build obj=drivers/hsi/clients
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/hsi/clients/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/hsi/clients/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/hsi/clients/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/hsi/clients/built-in.o drivers/hsi/clients/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/hsi/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/hsi/modules.order" a causa di: drivers/hsi/clients FORCE
+(cat /dev/null;   cat drivers/hsi/clients/modules.order;) > drivers/hsi/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/hsi/built-in.o drivers/hsi/modules.order drivers/hsi/clients
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/htc_debug/stability" non esiste
+make -f scripts/Makefile.build obj=drivers/htc_debug/stability
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/htc_debug/stability/bootmsg.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/htc_debug/stability/htc_process_debug.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/htc_debug/stability/htc_report_meminfo.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/htc_debug/stability/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/htc_debug/stability/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/htc_debug/stability/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/htc_debug/stability/built-in.o drivers/htc_debug/stability/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/hwmon" non esiste
+make -f scripts/Makefile.build obj=drivers/hwmon
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hwmon/hwmon.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hwmon/pm8xxx-adc.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/hwmon/pm8xxx-adc-scale.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/hwmon/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/hwmon/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/hwmon/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/hwmon/built-in.o drivers/hwmon/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/i2c" non esiste
+make -f scripts/Makefile.build obj=drivers/i2c
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/i2c-boardinfo.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/i2c-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/i2c-dev.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/i2c/algos" non esiste
+make -f scripts/Makefile.build obj=drivers/i2c/algos
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/i2c/algos/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/i2c/algos/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/i2c/algos/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/i2c/algos/built-in.o drivers/i2c/algos/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/i2c/busses" non esiste
+make -f scripts/Makefile.build obj=drivers/i2c/busses
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/busses/i2c-qup.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/i2c/busses/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/i2c/busses/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/i2c/busses/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/i2c/busses/built-in.o drivers/i2c/busses/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/i2c/chips" non esiste
+make -f scripts/Makefile.build obj=drivers/i2c/chips
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/pn544.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/tfa9887.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/rt5501.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/tfa9887l.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/tpa6185.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/cm3629.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/i2c/chips/proximity.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/akm8963_nst.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/r3gd20.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/i2c/chips/bma250_bosch.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/i2c/chips/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/i2c/chips/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/i2c/chips/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/i2c/chips/built-in.o drivers/i2c/chips/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/i2c/muxes" non esiste
+make -f scripts/Makefile.build obj=drivers/i2c/muxes
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/i2c/muxes/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/i2c/muxes/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/i2c/muxes/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/i2c/muxes/built-in.o drivers/i2c/muxes/modules.order
+:
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/i2c/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/i2c/modules.order" a causa di: drivers/i2c/algos drivers/i2c/busses drivers/i2c/chips drivers/i2c/muxes FORCE
+(cat /dev/null;   cat drivers/i2c/algos/modules.order;   cat drivers/i2c/busses/modules.order;   cat drivers/i2c/muxes/modules.order;   cat drivers/i2c/chips/modules.order;) > drivers/i2c/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/i2c/built-in.o drivers/i2c/modules.order drivers/i2c/algos drivers/i2c/busses drivers/i2c/chips drivers/i2c/muxes
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/idle" non esiste
+make -f scripts/Makefile.build obj=drivers/idle
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/idle/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/idle/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/idle/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/idle/built-in.o drivers/idle/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/ieee802154" non esiste
+make -f scripts/Makefile.build obj=drivers/ieee802154
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/ieee802154/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/ieee802154/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/ieee802154/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/ieee802154/built-in.o drivers/ieee802154/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/input" non esiste
+make -f scripts/Makefile.build obj=drivers/input
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/input.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/input-compat.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/input-mt.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/ff-core.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/input/input-core.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/input-polldev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mousedev.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/evdev.o" a causa di: FORCE
+scripts/Makefile.build:443: l'obbiettivo "drivers/input/joystick" non esiste
+make -f scripts/Makefile.build obj=drivers/input/joystick
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/joystick/xpad.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/input/joystick/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/input/joystick/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/input/joystick/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/input/joystick/built-in.o drivers/input/joystick/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/input/keyboard" non esiste
+make -f scripts/Makefile.build obj=drivers/input/keyboard
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/keyboard/atkbd.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/keyboard/pmic8xxx-keypad.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/input/keyboard/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/input/keyboard/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/input/keyboard/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/input/keyboard/built-in.o drivers/input/keyboard/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/input/misc" non esiste
+make -f scripts/Makefile.build obj=drivers/input/misc
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/gpio_event.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/gpio_matrix.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/gpio_input.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/gpio_output.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/gpio_axis.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/keychord.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/misc/uinput.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/input/misc/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/input/misc/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/input/misc/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/input/misc/built-in.o drivers/input/misc/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/input/mouse" non esiste
+make -f scripts/Makefile.build obj=drivers/input/mouse
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mouse/psmouse-base.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mouse/synaptics.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mouse/alps.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mouse/logips2pp.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/mouse/trackpoint.o" a causa di: FORCE
+scripts/Makefile.build:429: aggiorna l'obbiettivo "drivers/input/mouse/psmouse.o" a causa di: FORCE
+scripts/Makefile.build:375: aggiorna l'obbiettivo "drivers/input/mouse/built-in.o" a causa di: FORCE
+scripts/Makefile.build:391: aggiorna l'obbiettivo "drivers/input/mouse/modules.order" a causa di: FORCE
+(cat /dev/null; ) > drivers/input/mouse/modules.order
+scripts/Makefile.build:148: aggiorna l'obbiettivo "__build" a causa di: drivers/input/mouse/built-in.o drivers/input/mouse/modules.order
+:
+scripts/Makefile.build:443: l'obbiettivo "drivers/input/touchscreen" non esiste
+make -f scripts/Makefile.build obj=drivers/input/touchscreen
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/touchscreen/sweep2wake.o" a causa di: FORCE
+scripts/Makefile.build:307: aggiorna l'obbiettivo "drivers/input/touchscreen/synaptics_3200.o" a causa di: drivers/input/touchscreen/synaptics_3200.c FORCE
+set -e; 	   echo '  CC      drivers/input/touchscreen/synaptics_3200.o'; /home/giampa/kernel.htc/scripts/gcc-wrapper.py /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-gcc -Wp,-MD,drivers/input/touchscreen/.synaptics_3200.o.d  -nostdinc -isystem /home/giampa/toolchains/arm-eabi-4.7/bin/../lib/gcc/arm-eabi/4.7/include -I/home/giampa/kernel.htc/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/giampa/kernel.htc/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -mno-unaligned-access -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO    -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(synaptics_3200)"  -D"KBUILD_MODNAME=KBUILD_STR(synaptics_3200)" -c -o drivers/input/touchscreen/.tmp_synaptics_3200.o drivers/input/touchscreen/synaptics_3200.c; if /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-objdump -h drivers/input/touchscreen/.tmp_synaptics_3200.o | grep -q __ksymtab; then /home/giampa/kernel.htc/scripts/gcc-wrapper.py /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-gcc -E -D__GENKSYMS__ -Wp,-MD,drivers/input/touchscreen/.synaptics_3200.o.d  -nostdinc -isystem /home/giampa/toolchains/arm-eabi-4.7/bin/../lib/gcc/arm-eabi/4.7/include -I/home/giampa/kernel.htc/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/giampa/kernel.htc/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -mno-unaligned-access -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO    -D"KBUILD_STR(s)=#s" -D"KBUILD_BASENAME=KBUILD_STR(synaptics_3200)"  -D"KBUILD_MODNAME=KBUILD_STR(synaptics_3200)" drivers/input/touchscreen/synaptics_3200.c | scripts/genksyms/genksyms  -a arm  -r /dev/null > drivers/input/touchscreen/.tmp_synaptics_3200.ver; /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-ld -EL  -r -o drivers/input/touchscreen/synaptics_3200.o drivers/input/touchscreen/.tmp_synaptics_3200.o -T drivers/input/touchscreen/.tmp_synaptics_3200.ver; rm -f drivers/input/touchscreen/.tmp_synaptics_3200.o drivers/input/touchscreen/.tmp_synaptics_3200.ver; else mv -f drivers/input/touchscreen/.tmp_synaptics_3200.o drivers/input/touchscreen/synaptics_3200.o; fi;   scripts/basic/fixdep drivers/input/touchscreen/.synaptics_3200.o.d drivers/input/touchscreen/synaptics_3200.o '/home/giampa/kernel.htc/scripts/gcc-wrapper.py /home/giampa/toolchains/arm-eabi-4.7/bin/arm-eabi-gcc -Wp,-MD,drivers/input/touchscreen/.synaptics_3200.o.d  -nostdinc -isystem /home/giampa/toolchains/arm-eabi-4.7/bin/../lib/gcc/arm-eabi/4.7/include -I/home/giampa/kernel.htc/arch/arm/include -Iarch/arm/include/generated -Iinclude  -include /home/giampa/kernel.htc/include/linux/kconfig.h -D__KERNEL__ -mlittle-endian -Iarch/arm/mach-msm/include -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -fno-delete-null-pointer-checks -Os -marm -fno-dwarf2-cfi-asm -fstack-protector -mabi=aapcs-linux -mno-thumb-interwork -funwind-tables -mno-unaligned-access -D__LINUX_ARM_ARCH__=7 -march=armv7-a -msoft-float -Uarm -Wframe-larger-than=1024 -Wno-unused-but-set-variable -fomit-frame-pointer -g -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -DCC_HAVE_ASM_GOTO    -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(synaptics_3200)"  -D"KBUILD_MODNAME=KBUILD_STR(synaptics_3200)" -c -o drivers/input/touchscreen/.tmp_synaptics_3200.o drivers/input/touchscreen/synaptics_3200.c' > drivers/input/touchscreen/.synaptics_3200.o.tmp; rm -f drivers/input/touchscreen/.synaptics_3200.o.d; mv -f drivers/input/touchscreen/.synaptics_3200.o.tmp drivers/input/touchscreen/.synaptics_3200.o.cmd
+  CC      drivers/input/touchscreen/synaptics_3200.o
+drivers/input/touchscreen/synaptics_3200.c: In function 'sweep2wake_presspwr':
+drivers/input/touchscreen/synaptics_3200.c:295:10: error: implicit declaration of function 'vibrate' [-Werror=implicit-function-declaration]
+cc1: some warnings being treated as errors
+scripts/Makefile.build:307: set di istruzioni per l'obiettivo "drivers/input/touchscreen/synaptics_3200.o" non riuscito
+scripts/Makefile.build:443: set di istruzioni per l'obiettivo "drivers/input/touchscreen" non riuscito
+scripts/Makefile.build:443: set di istruzioni per l'obiettivo "drivers/input" non riuscito
+Makefile:951: set di istruzioni per l'obiettivo "drivers" non riuscito
